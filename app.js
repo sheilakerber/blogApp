@@ -8,8 +8,10 @@ const path = require("path")
 const mongoose = require("mongoose")
 const session = require("express-session")
 const flash = require("connect-flash")
-const { application } = require("express")
-//const exp = require("constants")
+const { application } = require("express")  // ??
+const exp = require("constants")
+require("./models/Postagem")
+const Postagem = mongoose.model("postagens")
 
 // configuracoes
     // sessao
@@ -53,7 +55,17 @@ const { application } = require("express")
 
 // rotas
     app.get('/', (req, res) => {
-        res.send('Rota principal')
+        Postagem.find().populate('categoria').sort({data: 'desc'}).then((postagens) => {
+            res.render('index', {postagens: postagens.map((postagem) => postagem.toJSON())});
+        }).catch((err) => {
+            req.flash('error_msg', 'Houve um erro ao listar postagens');
+            res.redirect('/404');
+        });
+    });
+
+
+    app.get("/404", (req, res) => {
+        res.send("Erro 404!")
     })
 
     app.get('/posts', (req, res) => {

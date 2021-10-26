@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <h1 class="display-4">Bem-vindo ao Blog do Node!</h1>
+  <p class="lead">Este blog foi criado a partir de um tutorial disponível na plataforma YouTube. Caso tenha interesse, basta consultar o link <a href="https://www.youtube.com/watch?v=LLqq6FemMNQ" target= "_blank" >Clicando aqui! </a></p>
+  <hr class="my-4">
+  <p>Que tal criar uma conta e contribuir com o Blog?! &#128515 </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Crie uma conta</a>
+  </p>
+</div>
+
+<hr>
+
+<h2>Postagens recentes:</h2>
+
+{{#each postagens}}
+    <div class="card">
+        <div class="card-body">
+            <h3>{{titulo}}</h3>
+            <p>{{descricao}}</p>
+        </div>
+    </div>
+{{else}}
+    <h5>Nenhuma postagem!</h5>
+{{/each}}
