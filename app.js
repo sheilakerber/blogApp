@@ -15,6 +15,8 @@ const Postagem = mongoose.model("postagens")
 require("./models/Categoria")
 const Categoria = mongoose.model("categorias")
 const usuarios = require("./routes/usuario")
+const passport = require("passport")
+require("./config/auth")(passport)
 
 // configuracoes
     // sessao
@@ -23,6 +25,8 @@ const usuarios = require("./routes/usuario")
         resave: true,
         saveUninitialized: true
     }))
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(flash())        // config. flash
 
     // middleware [locals = variaveis globais]
