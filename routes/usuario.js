@@ -47,7 +47,9 @@ router.post("/registro", (req, res) => {
                     nome: req.body.nome,
                     email: req.body.email,
                     senha: req.body.senha
+                    // eAdmin: 1  // para tornar um usuario Admin no momento do cadastro
                 })
+                // Admin cadastrado: sheAdmin@email.com senha: 12345
 
                 bcrypt.genSalt(10, (erro, salt) => {
                     bcrypt.hash(novoUsuario.senha, salt, (erro, hash) => {
